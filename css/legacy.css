@@ -1,0 +1,709 @@
+/* Simple responsive styles for the student e-portfolio */
+:root{
+  --max-width: 1200px;
+  --accent: #00ff99; /* neon/cyber green */
+  --muted: #9fb0af;
+  --bg: #0b1116; /* deep background */
+  --surface: #071018; /* slightly lighter for cards */
+  --card: #08141a;
+}
+
+*{box-sizing:border-box}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body{
+  font-family:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  line-height:1.5;
+  color:#e6f3ef;
+  margin:0;
+  background:var(--bg);
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Container to center content and limit max width */
+.container{
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:1rem;
+  width: 100%;
+}
+
+/* Security-themed header banner */
+.site-header {
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.site-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../assets/security-banner.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.6;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.header-inner {
+  position: relative;
+  z-index: 1;
+  padding: 0.75rem 1rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.site-title {
+  position: relative;
+}
+
+.site-title a{
+  color:var(--accent);
+  text-decoration:none;
+  font-family:SFMono-Regular,Menlo,Monaco,Consolas,'Roboto Mono',monospace;
+  display: inline-block;
+  position:relative;
+}
+
+.site-title a::after {
+  content: 'dj@psu >';
+  display: block;
+  font-size: 0.8em;
+  color: #cfeee6;
+  font-weight: normal;
+  margin-top: 0.1rem;
+  border-right: 10px solid #dfffee;
+  line-height: 1;
+  padding-right: 2px;
+  width: fit-content;
+  animation: blink-caret 1.1s steps(2, start) infinite;
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, 'Roboto Mono', monospace;
+  pointer-events: auto;
+}
+
+/* Animation for terminal cursor blink */
+@keyframes blink-caret {
+  to { border-color: transparent; }
+}
+
+.main-nav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:1rem;
+  margin-top: 4rem;
+}
+
+.main-nav a{
+  color:#cfeee6;
+  text-decoration:none;
+  font-weight:500;
+}
+
+.main-nav a:hover{
+  color:var(--accent);
+}
+
+/* Style for the current page in the navigation */
+.main-nav a[aria-current="page"] {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Hero card section */
+.hero{
+  padding:3rem 1.5rem;
+  background:var(--surface);
+  margin-bottom:2rem;
+  border:1px solid rgba(0,255,153,0.1);
+  border-left:4px solid rgba(0,255,153,0.4);
+  border-radius:8px;
+  background-image:linear-gradient(160deg,rgba(0,255,153,0.07),transparent 50%);
+  display:flex;
+  gap:2rem;
+  align-items:center;
+}
+
+.hero-content{
+  flex:1;
+}
+
+.hero-image{
+  width:200px;
+  height:200px;
+  border-radius:8px;
+  border:2px solid rgba(0,255,153,0.3);
+  box-shadow:0 0 20px rgba(0,255,153,0.15);
+  object-fit:cover;
+  background:var(--card);
+}
+
+.hero h2{
+  margin:0 0 0.5rem 0;
+  font-family:SFMono-Regular,Menlo,Monaco,Consolas,'Roboto Mono',monospace;
+  color:#dfffee;
+}
+
+.hero-sub{
+  color:var(--muted);
+  margin-top:0;
+}
+
+/* Button styles */
+.btn{
+  display:inline-block;
+  background:transparent;
+  color:var(--accent);
+  padding:0.45rem 0.75rem;
+  border-radius:5px;
+  text-decoration:none;
+  border:1px solid rgba(0,255,153,0.18);
+}
+
+.btn:hover{
+  background:rgba(0,255,153,0.06);
+}
+
+.btn-alt{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  color:#cfeee6;
+}
+
+/* Redesign button style */
+.btn-redesign {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.15) 0%, rgba(255, 0, 255, 0.15) 100%);
+  color: #00ffff;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-redesign:hover {
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.25) 0%, rgba(255, 0, 255, 0.25) 100%);
+  color: #fff;
+  border-color: rgba(255, 0, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Grid and layout */
+.grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.feats article {
+  flex: 0 0 calc(33.333% - 0.67rem); /* 3 items per row */
+}
+
+.feats article h4 {
+  min-height: 3.5em; /* Adjust based on your longest title */
+  margin-bottom: 0.5rem;
+}
+
+.feats article p {
+  margin-top: 0; /* Ensure consistent spacing */
+}
+
+/* On smaller screens */
+@media (max-width: 768px) {
+  .feats article {
+    flex: 0 0 100%;
+  }
+}
+
+article{
+  background:var(--card);
+  padding:1rem;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+/* Styling for "View sample" links within article cards */
+article p a {
+  color: #7fb3ff;
+  text-decoration: none;
+}
+
+article p a:hover {
+  color: #a6d1ff;
+}
+
+.summary h3,
+.resume-preview h3,
+.contact-cta h3{
+  margin-top:1.25rem;
+  color:#dfffee;
+}
+
+/* Typography */
+h3, h4{
+  font-family:SFMono-Regular,Menlo,Monaco,Consolas,'Roboto Mono',monospace;
+  color:#00ff99;
+}
+
+/* Sample cards for previews */
+.sample-cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.5rem;
+  margin:0;
+  padding:0;
+}
+
+.sample-card{
+  background:var(--card);
+  padding:1rem;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.03);
+  display:flex;
+  flex-direction:column;
+  gap:0.75rem;
+  min-height:650px;
+}
+
+.sample-card .card-link{
+  color:inherit;
+  text-decoration:none;
+}
+
+.sample-card h4{
+  margin:0;
+  font-size:1.25rem;
+  color:#00ff99;
+}
+
+.sample-card .meta{
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* Samples list */
+.samples-list{
+  list-style:none;
+  padding:0;
+}
+
+.samples-list li{
+  background:var(--card);
+  margin:0 0 0.75rem;
+  padding:0.75rem;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+.samples-list a{
+  color:#7fb3ff;
+  text-decoration:none;
+}
+
+.samples-list a:hover{
+  color:#a6d1ff;
+}
+
+/* Document preview containers */
+.doc-preview-wrap{
+  background:#051015;
+  border-radius:6px;
+  overflow:visible;
+  border:1px solid rgba(255,255,255,0.02);
+  position:relative;
+  margin-top:3rem;
+}
+
+.doc-preview{
+  width:100%;
+  height:800px;
+  border:0;
+  background:#ffff;
+}
+
+.doc-preview-controls{
+  position:absolute;
+  top:-2.75rem;
+  right:0;
+  display:flex;
+  gap:0.5rem;
+  z-index:10;
+}
+
+.pdf-preview-container{
+  background:#051015;
+  border-radius:6px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.02);
+  height:400px;
+  width:100%;
+  margin:0.75rem 0;
+  position: relative;
+}
+
+.pdf-preview{
+  width:100%;
+  height:100%;
+  border:0;
+  background:#ffff;
+}
+
+.card-thumb{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.03);
+  background:#021018;
+}
+
+/* Reflection sections */
+.reflection{
+  margin-top:0.5rem;
+  padding-top:0.5rem;
+  border-top:1px dashed rgba(255,255,255,0.03);
+  color:#cfeee6;
+}
+
+.reflection p{
+  margin:0.5rem 0 0 0;
+  color:#9fb0af;
+}
+
+/* Side-by-side document comparison layout */
+.doc-comparison{
+  display:flex;
+  gap:1rem;
+  align-items:center;
+  margin:0.75rem 0;
+}
+
+.doc-comparison .pdf-preview-container{
+  flex:1;
+  margin:0;
+}
+
+.comparison-arrow{
+  font-size:2rem;
+  color:var(--accent);
+  flex-shrink:0;
+  padding:0 0.5rem;
+}
+
+/* Expanded width for comparison card */
+.sample-card.comparison-card{
+  grid-column:1 / -1;
+  min-height:800px;
+}
+
+.comparison-card .pdf-preview-container{
+  height:700px;
+}
+
+/* Mobile PDF overlay - hidden by default */
+.mobile-pdf-overlay {
+  display: none;
+}
+
+/* Footer */
+.site-footer{
+  background:transparent;
+  border-top:1px solid rgba(255,255,255,0.04);
+  margin-top:2rem;
+  width: 100%;
+}
+
+.footer-inner{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:1rem;
+  padding:0 1rem;
+}
+
+.footer-left{
+  display:flex;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+
+.footer-box{
+  min-width:180px;
+  color:#cfeee6;
+}
+
+.footer-box h4{
+  margin:0 0 0.5rem 0;
+  color:#dfffee;
+}
+
+.footer-box ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.footer-box ul li{
+  margin:0 0 0.35rem;
+}
+
+.footer-box .btn{
+  padding:0.3rem 0.5rem;
+  font-size:0.9rem;
+}
+
+.footer-box ul li .btn{
+  display:inline-block;
+  width:auto;
+}
+
+.contact-box p{
+  margin:0.35rem 0;
+}
+
+.footer-right{
+  min-width:160px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+}
+
+.copyright{
+  margin:0;
+  color:#9fb0af;
+}
+
+/* Link styles */
+a[href^="mailto:"]{
+  color:#7fb3ff;
+  font-weight:500;
+  text-decoration:none;
+}
+
+a[href^="mailto:"]:hover{
+  color:#a6d1ff;
+}
+
+a[href*="linkedin.com"]::before{
+  content:"in ";
+  font-weight:bold;
+  margin-right:0.25rem;
+  color:#fff;
+}
+
+a[href*="linkedin.com"]{
+  background:#0a66c2;
+  color:#fff;
+  border:1px solid #0a66c2;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Helvetica Neue',sans-serif;
+}
+
+a[href*="linkedin.com"]:hover{
+  background:#094fa3;
+}
+
+/* Accessibility */
+a:focus-visible{
+  outline:3px solid rgba(0,255,153,0.6);
+  outline-offset:2px;
+}
+
+/* Utility classes */
+.full-width-divider {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  border: 1px solid #ccc;
+  height: 0;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Desktop: 700px and up */
+@media (min-width:700px){
+  .container{
+    padding:2rem;
+  }
+  .header-inner{
+    padding:1rem 0;
+  }
+}
+
+/* Tablet: 601px to 900px */
+@media (max-width: 900px) and (min-width: 601px) {
+  .site-header::before {
+    opacity: 0.45;
+  }
+  
+  .container {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+/* Mobile portrait and landscape: up to 600px */
+@media (max-width:600px){
+  .container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  
+  .header-inner{
+    flex-direction:column;
+    gap:0.5rem;
+    padding: 1rem;
+  }
+  
+  .site-header::before {
+    opacity: 0.3;
+  }
+  
+  .site-title a {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+  
+  .main-nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top: 1rem;
+  }
+  
+  .hero{
+    padding:2rem 1rem;
+    flex-direction:column;
+  }
+  
+  .hero-image{
+    width:150px;
+    height:150px;
+  }
+  
+  .footer-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  
+  .footer-right{
+    align-self:flex-start;
+  }
+  
+  .sample-cards{
+    grid-template-columns:1fr;
+  }
+  
+  .doc-preview-controls{
+    position:static;
+    margin-bottom:1rem;
+  }
+  
+  .doc-comparison{
+    flex-direction:column;
+  }
+  
+  .comparison-arrow{
+    transform:rotate(90deg);
+  }
+}
+
+/* Mobile landscape: up to 900px wide in landscape */
+@media (max-width: 900px) and (orientation: landscape) {
+  .container {
+    max-width: 100%;
+    padding: 1rem 2rem;
+  }
+  
+  .header-inner {
+    flex-direction: row;
+    padding: 0.75rem 1rem;
+  }
+  
+  .main-nav ul {
+    margin-top: 0;
+  }
+}
+
+/* Mobile PDF overlay - up to 768px */
+@media (max-width: 768px) {
+  .pdf-preview-container {
+    min-height: 400px;
+  }
+  
+  .pdf-preview {
+    pointer-events: none;
+    opacity: 0.3;
+    display: block;
+    height: 100%;
+    min-height: 400px;
+  }
+  
+  .doc-preview {
+    pointer-events: none;
+    opacity: 0.3;
+  }
+  
+  .mobile-pdf-overlay {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: #e6f3ef;
+    z-index: 10;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+  }
+  
+  .mobile-pdf-overlay:hover,
+  .mobile-pdf-overlay:active {
+    background: rgba(0, 0, 0, 0.95);
+  }
+  
+  .mobile-pdf-icon {
+    font-size: 3rem;
+    color: var(--accent);
+  }
+  
+  .mobile-pdf-text {
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .mobile-pdf-text strong {
+    display: block;
+    font-size: 1.2rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  
+  .mobile-pdf-text small {
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+}
