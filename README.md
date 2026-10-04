@@ -59,6 +59,7 @@ python -m unittest discover -s tests -v
 python scripts/build.py
 python scripts/check_links.py _site
 node --check scripts/site.js
+node --test tests/site.test.cjs
 ```
 
 ## Hosting
@@ -67,7 +68,7 @@ Publish the contents of `_site` on any static host. All local links are relative
 
 ## Theme, status, and article dates
 
-The header's **Light mode** button toggles the theme and remembers the choice on this browser. The initial theme follows the system preference. Platform badges are blue; Active is orange and Retired is green, with text labels in both themes. Badges appear on listing cards and article headers.
+The header’s theme button names the destination: **Dark Mode** with a moon in light mode, or **Light Mode** with a sun in dark mode. It remembers the choice on this browser. The initial theme follows the system preference. Platform badges are blue; Active is orange and Retired is green, with text labels in both themes. Badges appear on listing cards and article headers.
 
 `date` is the article's display and sorting date. The seven imported writeups use the original Obsidian file creation dates, preserved in [the source-date record](docs/writeup-source-dates.json), with `date_source = "source-created"`. These represent the start of the writeup, not a claimed completion or website publication date. They remain stable across checkouts and builds.
 
@@ -82,3 +83,22 @@ For private team sharing, a separately authenticated host must protect the HTML,
 ### Releasing Garfield after retirement
 
 Confirm retirement on HTB, then update the local `content/posts/garfield.md` to `box_status = "retired"`, `draft = false`, and `publication_approved = true`. Remove `content/withheld/garfield.toml` and the two Garfield exclusions from `.gitignore`, then include the Markdown and media in the release commit. The URL remains `writeups/garfield.html`. This is an explicit editorial release, not an automatic live status check.
+
+## Account-root GitHub Pages URL
+
+The intended public address is **https://dwheeler22.github.io/**. GitHub serves that account root from a repository named **DWheeler22.github.io**. Changing HTML links cannot change the hosting mount point of an `e-portfolio` project site.
+
+1. In the existing repository’s **Settings → General → Repository name**, rename `e-portfolio` to `DWheeler22.github.io` (provided that account-site repository name is available).
+2. Keep **Settings → Pages → Source → GitHub Actions** selected.
+3. Update this checkout’s remote after the rename:
+
+   ```sh
+   git remote set-url origin https://github.com/DWheeler22/DWheeler22.github.io.git
+   ```
+
+4. Merge the feature branch and allow **Validate and publish portfolio** to deploy from `main`.
+5. Verify the deployment URL is `https://dwheeler22.github.io/` and that an article’s Home links return there.
+
+Home links use directory URLs (`./` or `../`), so they omit `index.html` and work at both the old project path and the new account root. The generated `index.html` file remains necessary for static hosting. Direct visits to an `index.html` URL are normalized in the address bar while preserving query strings and fragments. Existing project-site URLs are not guaranteed to redirect after a repository rename.
+
+The terminal brand has a 1.4-second typing cooldown shared across page navigation within the tab. Hover followed by keyboard focus does not restart an animation already in progress; reduced-motion settings show the completed word immediately.

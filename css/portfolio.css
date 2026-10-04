@@ -39,7 +39,7 @@
 :root[data-theme="light"]{color-scheme:light;--bg:#f7f9f7;--surface:#fff;--card:#fff;--text:#17271e;--muted:#526158;--accent:#176d3b;--line:#ccd8cf;--platform-text:#354f98;--platform-bg:#eef2ff;--active-text:#8e450a;--active-bg:#fff1e0;--retired-text:#176135;--retired-bg:#e7f5ec}
 .header-controls{display:flex;align-items:center;gap:28px}
 .theme-toggle{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:7px 10px;border:1px solid var(--line);border-radius:5px;background:var(--surface);color:var(--text);font-size:12px;cursor:pointer;white-space:nowrap}
-.theme-toggle:hover,.theme-toggle[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
 .tag-platform{color:var(--platform-text);background:var(--platform-bg);border-color:currentColor}
 .tag-active{color:var(--active-text);background:var(--active-bg);border-color:currentColor}
 .tag-retired{color:var(--retired-text);background:var(--retired-bg);border-color:currentColor}

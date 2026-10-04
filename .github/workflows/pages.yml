@@ -24,6 +24,7 @@ jobs:
       - run: python scripts/check_links.py _site
       - run: node --check scripts/site.js
       - run: node --check scripts/theme.js
+      - run: node --test tests/site.test.cjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

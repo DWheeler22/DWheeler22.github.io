@@ -84,10 +84,10 @@ def render_markdown(source):
 
 
 def page(title, content, active='', base='', description='DJ Wheeler — cybersecurity student at Penn State, focused on offensive security.'):
-    nav = ''.join(f'<a href="{base}{url}"' + (' aria-current="page"' if active == label else '') + f'>{label}</a>'
-                  for label, url in [('Home', 'index.html'), ('Writeups', 'writeups.html'), ('About', 'about.html'), ('Résumé', 'resume.html')])
+    nav = ''.join(f'<a href="{base + url or "./"}"' + (' aria-current="page"' if active == label else '') + f'>{label}</a>'
+                  for label, url in [('Home', ''), ('Writeups', 'writeups.html'), ('About', 'about.html'), ('Résumé', 'resume.html')])
     return Template((ROOT / 'templates/page.html').read_text(encoding='utf-8')).substitute(
-        title=escape(title), description=escape(description), base=base, nav=nav,
+        title=escape(title), description=escape(description), base=base, home=base or './', nav=nav,
         content=content, year=date.today().year)
 
 
