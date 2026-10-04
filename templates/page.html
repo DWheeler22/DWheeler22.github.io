@@ -6,6 +6,7 @@
   <meta name="description" content="$description">
   <title>$title — DJ Wheeler</title>
   <link rel="icon" href="${base}assets/favicon.svg" type="image/svg+xml">
+  <script src="${base}scripts/theme.js"></script>
   <link rel="stylesheet" href="${base}css/portfolio.css">
   <script src="${base}scripts/site.js" defer></script>
 </head>
@@ -13,7 +14,7 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header"><div class="container header-inner">
     <a class="terminal-brand" href="${base}index.html" aria-label="DJ Wheeler home"><span>dj<span class="muted">@</span>psu</span><span class="prompt" aria-hidden="true">:~$$ <span data-typewriter></span><span class="cursor">▋</span></span></a>
-    <nav aria-label="Main navigation">$nav</nav>
+    <div class="header-controls"><nav aria-label="Main navigation">$nav</nav><button class="theme-toggle" type="button" aria-label="Light mode" aria-pressed="false" hidden><span aria-hidden="true">☀</span> Light mode</button></div>
   </div></header>
   <main id="main" class="container">$content</main>
   <footer class="container site-footer"><span>© $year DJ Wheeler</span><a href="${base}samples.html">Technical writing archive ↗</a><span class="mono">Always learning. Always documenting.</span></footer>

@@ -2,6 +2,7 @@
 title = "Machine name — central lesson"
 date = "2026-10-03"
 platform = "HackTheBox"
+box_status = "unknown"
 difficulty = "Easy"
 tags = ["Linux", "Enumeration"]
 summary = "Replace with a concise, evidence-based summary."

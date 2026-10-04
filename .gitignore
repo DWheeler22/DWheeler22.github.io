@@ -2,3 +2,7 @@ _site/
 _preview/
 __pycache__/
 .venv/
+
+# Active machine: keep the full solve and screenshots local until retirement.
+content/posts/garfield.md
+content/media/garfield/

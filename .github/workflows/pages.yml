@@ -23,6 +23,7 @@ jobs:
       - run: python scripts/build.py
       - run: python scripts/check_links.py _site
       - run: node --check scripts/site.js
+      - run: node --check scripts/theme.js
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

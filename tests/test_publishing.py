@@ -19,6 +19,40 @@ importer = module('import_note')
 
 
 class PublishingTests(unittest.TestCase):
+    def test_active_notice_contains_no_walkthrough_or_media(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for folder in ('templates', 'content/posts', 'content/withheld', 'content/media/garfield', 'assets', 'css', 'scripts', 'samples'):
+                (root / folder).mkdir(parents=True)
+            (root / 'templates/page.html').write_text('$title $description $content', encoding='utf-8')
+            for name in ('home', 'about', 'resume'):
+                (root / f'content/{name}.html').write_text('$latest' if name == 'home' else '', encoding='utf-8')
+            draft = (ROOT / 'content/post-template.md').read_text(encoding='utf-8')
+            draft = draft.replace('box_status = "unknown"', 'box_status = "active"')
+            draft = draft.replace('Machine name — central lesson', 'SECRET_TITLE').replace('Linux', 'SECRET_TAG')
+            draft = draft.replace('Replace with a concise, evidence-based summary.', 'SECRET_SUMMARY') + '\nSECRET_BODY'
+            source = root / 'content/posts/garfield.md'
+            source.write_text(draft, encoding='utf-8')
+            (root / 'content/withheld/garfield.toml').write_text((ROOT / 'content/withheld/garfield.toml').read_text(encoding='utf-8'), encoding='utf-8')
+            (root / 'content/media/garfield/private.png').write_bytes(b'SECRET_IMAGE')
+            with patch.object(build, 'ROOT', root):
+                build.build()
+                article = (root / '_site/writeups/garfield.html').read_text(encoding='utf-8')
+                self.assertIn('Writeup available after retirement', article)
+                self.assertIn('tag-active', article)
+                self.assertFalse((root / '_site/media/garfield').exists())
+                for path in (root / '_site').rglob('*'):
+                    if path.is_file():
+                        self.assertNotIn(b'SECRET_', path.read_bytes(), str(path))
+                self.assertIn('writeups/garfield.html', (root / '_site/writeups.html').read_text(encoding='utf-8'))
+                build.build(preview=True)
+                self.assertIn('SECRET_BODY', (root / '_preview/writeups/garfield.html').read_text(encoding='utf-8'))
+                self.assertTrue((root / '_preview/media/garfield/private.png').exists())
+                # CI has only the public metadata; the local private source is ignored.
+                source.unlink()
+                build.build()
+                self.assertTrue((root / '_site/writeups/garfield.html').exists())
+
     def test_html_and_unsafe_links_are_not_executable(self):
         rendered, _ = build.render_markdown('<script>alert(1)</script>\n\n[x](javascript:alert(1))')
         self.assertNotIn('<script>', rendered)
@@ -70,6 +104,21 @@ class PublishingTests(unittest.TestCase):
                 (root / 'content/posts/hidden-lab.md').write_text(draft.replace('draft = true', 'draft = false'), encoding='utf-8')
                 with self.assertRaises(ValueError):
                     build.build()
+
+                # Approval alone must never expose an active or unconfirmed HTB solve.
+                approved = draft.replace('draft = true', 'draft = false').replace('publication_approved = false', 'publication_approved = true')
+                for status in ('active', 'unknown'):
+                    with self.subTest(status=status):
+                        (root / 'content/posts/hidden-lab.md').write_text(approved.replace('box_status = "unknown"', f'box_status = "{status}"'), encoding='utf-8')
+                        with self.assertRaisesRegex(ValueError, 'confirmed retired'):
+                            build.build()
+                        self.assertFalse((root / '_site/media/hidden-lab/private.png').exists())
+                retired = approved.replace('box_status = "unknown"', 'box_status = "retired"')
+                (root / 'content/posts/hidden-lab.md').write_text(retired, encoding='utf-8')
+                build.build()
+                self.assertTrue((root / '_site/writeups/hidden-lab.html').exists())
+                self.assertTrue((root / '_site/media/hidden-lab/private.png').exists())
+                self.assertIn('tag-retired', (root / '_site/writeups/hidden-lab.html').read_text(encoding='utf-8'))
 
 
 if __name__ == '__main__':

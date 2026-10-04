@@ -1,0 +1,86 @@
+[
+  {
+    "article": "artificial",
+    "source": "Assets/Pasted image 20251104221852.png",
+    "destination": "content/media/artificial/application-shell.png",
+    "sha256": "36479848f8a8816bbc2b090d5c7875b5331d7127035d471bef66c22ae55365c4"
+  },
+  {
+    "article": "artificial",
+    "source": "Assets/Pasted image 20251104224915.png",
+    "destination": "content/media/artificial/backrest-login.png",
+    "sha256": "a42f76067a32d4ae143b20b2fbd2ccb3eb94280a9f972a095000b6b5861cfa88"
+  },
+  {
+    "article": "blackfield",
+    "source": "Assets/Pasted image 20251109120242.png",
+    "destination": "content/media/blackfield/credential-validation.png",
+    "sha256": "b061bbbd0fd4a3d9c520647d551d36ac5627c03a63ef435485d190f9770f2016"
+  },
+  {
+    "article": "blackfield",
+    "source": "Assets/Pasted image 20251111001221.png",
+    "destination": "content/media/blackfield/shadow-copy.png",
+    "sha256": "0bff550c7bf627e508be4d18bce527e44eb2680fa2309a696979f9e2b6cabb0a"
+  },
+  {
+    "article": "cascade",
+    "source": "Assets/Pasted image 20261003183111.png",
+    "destination": "content/media/cascade/administrator-authentication.png",
+    "sha256": "98f96ae9a36eb36127c10433d637b9ab28d59491dccdd2aba625065d3e16dcbd"
+  },
+  {
+    "article": "cascade",
+    "source": "Assets/Pasted image 20261003162555.png",
+    "destination": "content/media/cascade/audit-decryption.png",
+    "sha256": "444c55dcd0e41bf057ae65a66bac7c9f862a1ea26205e29ceaa92bdd71b79672"
+  },
+  {
+    "article": "devarea",
+    "source": "Assets/Pasted image 20260401004048.png",
+    "destination": "content/media/devarea/hoverfly-shell.png",
+    "sha256": "63df8ab98162aa421a19d8bf386a3e8349bf8cd192a3cbf5eb062e39a181f399"
+  },
+  {
+    "article": "devarea",
+    "source": "Assets/Pasted image 20260401000734.png",
+    "destination": "content/media/devarea/ssrf-callback.png",
+    "sha256": "521326bca77124bb19cd356df100460c398f3d6afcb2c31035b699b6ca0d0721"
+  },
+  {
+    "article": "garfield",
+    "source": "Assets/Pasted image 20260407124120.png",
+    "destination": "content/media/garfield/logon-script-callback.png",
+    "sha256": "790ac3b497b18cdc0ca0aaa7613ccd4d5a021314a7306f2ad99c2b2715c5ca96"
+  },
+  {
+    "article": "logging",
+    "source": "Assets/Pasted image 20260421111526.png",
+    "destination": "content/media/logging/account-control.png",
+    "sha256": "a405c12f53b94312f59b43ce167b94a816e7fe10676f5feb1e4867b53825d068"
+  },
+  {
+    "article": "logging",
+    "source": "Assets/Pasted image 20260424100656.png",
+    "destination": "content/media/logging/update-task-shell.png",
+    "sha256": "21a46ea9b8b87549ecd6aeb10cc94d7771022465b9c9b5af3aaaf23b7d1baeff"
+  },
+  {
+    "article": "principal",
+    "source": "Assets/Pasted image 20260313135625.png",
+    "destination": "content/media/principal/admin-api.png",
+    "sha256": "1f2bedd210a098cb9ee135f869fd7086c4d8029524abaaedf80ce63879714dc1"
+  },
+  {
+    "article": "principal",
+    "source": "Assets/Pasted image 20260313115353.png",
+    "destination": "content/media/principal/jwks.png",
+    "sha256": "d9281cde35706dfc31d1422b681cce28eb1d85d81d0e9da92a817e7cfff7d403"
+  },
+  {
+    "article": "devarea",
+    "source": "User attachment: codex-clipboard-17d7bb6c-a9f3-4480-8b56-325cea2b2ee5.png",
+    "destination": "content/media/devarea/root-shell.png",
+    "sha256": "9450b5a90bc06194d50c0bed7aced43900023745182b918bef8c4768fc91f7be"
+  }
+]

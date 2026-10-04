@@ -1,4 +1,25 @@
 (() => {
+  const themeButton = document.querySelector('.theme-toggle');
+  const themePreference = window.matchMedia('(prefers-color-scheme: light)');
+  let explicitTheme = false;
+  try { explicitTheme = ['light', 'dark'].includes(localStorage.getItem('portfolio-theme')); } catch {}
+  const setTheme = theme => {
+    document.documentElement.dataset.theme = theme;
+    themeButton?.setAttribute('aria-pressed', String(theme === 'light'));
+  };
+  if (themeButton) {
+    themeButton.hidden = false;
+    setTheme(document.documentElement.dataset.theme || (themePreference.matches ? 'light' : 'dark'));
+    themeButton.addEventListener('click', () => {
+      const theme = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      explicitTheme = true;
+      setTheme(theme);
+      try { localStorage.setItem('portfolio-theme', theme); } catch {}
+    });
+    themePreference.addEventListener('change', event => {
+      if (!explicitTheme) setTheme(event.matches ? 'light' : 'dark');
+    });
+  }
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const brand = document.querySelector('.terminal-brand');
   const typed = document.querySelector('[data-typewriter]');
